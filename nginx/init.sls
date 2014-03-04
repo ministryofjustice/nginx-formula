@@ -1,0 +1,54 @@
+{% from "nginx/map.jinja" import nginx, maintenance with context %}
+
+include:
+  - bootstrap.groups
+
+nginx:
+  user:
+    - present
+    - home: /var/cache/nginx
+    - createhome: False
+    - shell: /sbin/nologin
+    - system: True
+    - groups:
+      - webservice
+      - www-data
+    - require:
+      - group: webservice
+
+  pkg:
+    - installed
+    - require:
+      - user: nginx
+
+  service:
+    - running
+    - enable: True
+    - reload: True
+    - watch:
+      - pkg: nginx
+      - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/conf.d/*.conf
+
+
+{% from 'firewall/lib.sls' import firewall_enable with context %}
+{{ firewall_enable('nginx', nginx.port , 'tcp') }}
+
+
+/etc/nginx/nginx.conf:
+  file:
+    - managed
+    - source: salt://nginx/templates/nginx.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+
+
+/etc/nginx/conf.d/default.conf:
+  file:
+    - managed
+    - source: salt://nginx/templates/default.conf
+    - user: root
+    - group: root
+    - mode: 644

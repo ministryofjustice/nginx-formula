@@ -1,0 +1,22 @@
+{#
+requires appslug defined in context
+#}
+
+{% from "nginx/map.jinja" import nginx with context %}
+
+
+{% set nginx_app = salt['grains.filter_by']({
+    'Debian': {
+        'port': nginx.port,
+        'redirects': [],
+        'http_access_rules': [],
+        'external_url': 'http://www.example.com',
+        'enforce_www': False,
+        'enforce_no_www': False,
+        'auth_basic': False,
+        'auth_basic_user_file': '',
+        'is_external': False,
+        'client_max_body_size': None,
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('apps:'+appslug+":nginx",{})) %}

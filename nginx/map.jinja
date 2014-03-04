@@ -1,0 +1,26 @@
+{% set nginx = salt['grains.filter_by']({
+    'Debian': {
+        'port': '80',
+        'throttling': {
+            'enabled': False,
+            'zones': {
+                'php': {
+                    'rate': '30r/m',
+                    'burst': 5,
+                }
+            }
+        }
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('nginx',{})) %}
+
+
+{% set maintenance = salt['grains.filter_by']({
+    'Debian': {
+        'enabled': False,
+        'password': 'changeme',
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('maintenance',{})) %}
+
+{% set provider = salt['grains.get']('provider','ec2') %}
