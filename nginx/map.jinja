@@ -1,5 +1,6 @@
 {% set nginx = salt['grains.filter_by']({
     'Debian': {
+        'pkg': 'nginx',
         'port': '80',
         'throttling': {
             'enabled': False,
