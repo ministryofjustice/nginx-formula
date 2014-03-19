@@ -15,25 +15,19 @@ nginx:
       - www-data
     - require:
       - group: webservice
-
   pkg:
+    - name: {{nginx.pkg}}
     - installed
-    - require:
-      - user: nginx
-
   service:
     - running
     - enable: True
     - reload: True
     - watch:
-      - pkg: nginx
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
-
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('nginx', nginx.port , 'tcp') }}
-
 
 /etc/nginx/nginx.conf:
   file:
@@ -44,7 +38,6 @@ nginx:
     - mode: 644
     - template: jinja
 
-
 /etc/nginx/conf.d/default.conf:
   file:
     - managed
@@ -52,3 +45,4 @@ nginx:
     - user: root
     - group: root
     - mode: 644
+
