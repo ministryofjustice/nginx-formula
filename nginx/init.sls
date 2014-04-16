@@ -3,6 +3,7 @@
 include:
   - bootstrap.groups
 
+
 nginx:
   user:
     - present
@@ -26,6 +27,7 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('nginx', nginx.port , 'tcp') }}
 
@@ -38,6 +40,7 @@ nginx:
     - mode: 644
     - template: jinja
 
+
 /etc/nginx/conf.d/default.conf:
   file:
     - managed
@@ -46,3 +49,12 @@ nginx:
     - group: root
     - mode: 644
 
+
+/etc/nginx/sites-available:
+  file:
+    - absent
+
+
+/etc/nginx/sites-enabled:
+  file:
+    - absent
