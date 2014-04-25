@@ -4,6 +4,11 @@ include:
   - bootstrap.groups
 
 
+nginx-pkg-deps:
+  pkg.installed:
+    - name: apache2-utils
+
+
 nginx:
   user:
     - present
