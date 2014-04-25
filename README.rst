@@ -125,7 +125,7 @@ example::
 
 Don't forget to manage the logs. I.e. by::
 
-    {% from 'monitoring/logs/lib.sls' import logship2 with context %}
+    {% from 'logstsash/lib.sls' import logship with context %}
 
-    {{ logship2('foo-access',  '/var/log/nginx/foo.access.json', 'nginx', ['nginx', 'foo', 'access'],  'rawjson') }}
-    {{ logship2('foo-error',  '/var/log/nginx/foo.error.json', 'nginx', ['nginx', 'foo', 'error'],  'json') }}
+    {{ logship('foo-access',  '/var/log/nginx/foo.access.json', 'nginx', ['nginx', 'foo', 'access'],  'rawjson') }}
+    {{ logship('foo-error',  '/var/log/nginx/foo.error.json', 'nginx', ['nginx', 'foo', 'error'],  'json') }}
