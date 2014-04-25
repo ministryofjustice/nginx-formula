@@ -80,16 +80,19 @@ pillar::
 
     apps:
       foo:
-        port: 80 (defaults to nginx.port)
-        redirects: []
-        http_access_rules: []
-        external_url: http://www.example.com
-        enforce_www: False
-        enforce_no_www: False
-        auth_basic: True
-        auth_basic_user_file: '/etc/supersafe/my_key'
-        is_external: False
-        client_max_body_size: None
+        nginx:
+            port: 80 (defaults to nginx.port)
+            redirects: []
+            http_access_rules: []
+            external_url: http://www.example.com
+            enforce_www: False
+            enforce_no_www: False
+            auth_basic: True
+            auth_basic_users:
+              my_user: my_pass
+              my_admin: my_pass
+            is_external: False
+            client_max_body_size: None
 
     maintenance:
       enabled: False
