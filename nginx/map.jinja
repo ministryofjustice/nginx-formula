@@ -11,7 +11,8 @@
                 }
             }
         },
-        'http_options': {}
+        'http_core_module_config': {
+        }
     },
     'default': 'Debian',
 }, merge=salt['pillar.get']('nginx',{})) %}
