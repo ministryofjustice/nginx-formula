@@ -63,7 +63,8 @@ nginx:
 
 /etc/nginx/sites-available:
   file.absent:
-
+    -
 
 /etc/nginx/sites-enabled:
   file.absent:
+    -
