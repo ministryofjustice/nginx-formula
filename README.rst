@@ -77,6 +77,9 @@ pillar::
 
     nginx:
       port: 80
+      http_core_module_config:
+        types_hash_max_size 2048
+        types_hash_bucket_size 64
 
     apps:
       foo:
