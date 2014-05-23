@@ -30,6 +30,22 @@ nginx:
       - file: /etc/nginx/conf.d/*.conf
 
 
+#
+# Place the startup script under nginx control
+# This allows us to generate UDP start events 
+#
+/etc/init.d/nginx:
+  file.managed:
+    - source: salt://nginx/files/nginx-init
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: nginx
+    - watch_in:
+      - service: nginx
+
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('nginx', nginx.port , 'tcp') }}
 
