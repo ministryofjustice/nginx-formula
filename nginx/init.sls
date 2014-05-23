@@ -44,7 +44,7 @@ nginx:
     - source: salt://nginx/files/nginx-init
     - user: root
     - group: root
-    - mode: 644
+    - mode: 755
     - template: jinja
     - require:
       - pkg: nginx
