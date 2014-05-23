@@ -9,6 +9,11 @@ nginx-pkg-deps:
     - name: apache2-utils
 
 
+# This version of netcat seems more reliable
+netcat-traditional:
+  pkg.installed
+
+
 nginx:
   user.present:
     - home: /var/cache/nginx
@@ -43,6 +48,7 @@ nginx:
     - template: jinja
     - require:
       - pkg: nginx
+      - pkg: netcat-traditional
     - watch_in:
       - service: nginx
 
