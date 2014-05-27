@@ -9,6 +9,12 @@ nginx-pkg-deps:
     - name: apache2-utils
 
 
+# This version of netcat seems more reliable
+nginx-deps-netcat-traditional:
+  pkg.installed:
+    - name: netcat-traditional
+
+
 nginx:
   user.present:
     - home: /var/cache/nginx
@@ -29,6 +35,23 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+
+#
+# Place the startup script under nginx control
+# This allows us to generate UDP start events 
+#
+/etc/init.d/nginx:
+  file.managed:
+    - source: salt://nginx/files/nginx-init
+    - user: root
+    - group: root
+    - mode: 755
+    - template: jinja
+    - require:
+      - pkg: nginx
+      - pkg: nginx-deps-netcat-traditional
+    - watch_in:
+      - service: nginx
 
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('nginx', nginx.port , 'tcp') }}
