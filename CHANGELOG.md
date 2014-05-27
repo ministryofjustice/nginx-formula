@@ -1,3 +1,8 @@
+## Development
+
+* Added UDP based statsd metric generation of start/restart
+* Removed explicit pidfile location definition - should remove nginx race condition wrt restarts
+
 ## Version 1.0.3
 
 * Allow to pass arbitrary options to http section w/o a need to overwrite the nginx.conf
