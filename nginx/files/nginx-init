@@ -51,7 +51,7 @@ do_start()
 	start-stop-daemon --start --quiet --pidfile $PID --exec $DAEMON -- \
 		$DAEMON_OPTS 2>/dev/null \
 		|| return 2
-        echo "restarts.nginx:1|s" | /bin/nc.traditional -w 1 -u localhost 8125
+	echo "restarts.nginx:1|s" | /bin/nc.traditional -w 1 -u localhost 8125
 }
 
 test_nginx_config() {
@@ -80,7 +80,7 @@ do_stop()
 #
 do_reload() {
 	start-stop-daemon --stop --signal HUP --quiet --pidfile $PID --name $NAME
-        echo "restarts.nginx:1|s" | /bin/nc.traditional -w 1 -u localhost 8125
+	echo "restarts.nginx:1|s" | /bin/nc.traditional -w 1 -u localhost 8125
 	return 0
 }
 
