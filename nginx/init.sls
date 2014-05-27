@@ -10,8 +10,9 @@ nginx-pkg-deps:
 
 
 # This version of netcat seems more reliable
-netcat-traditional:
-  pkg.installed
+nginx-deps-netcat-traditional:
+  pkg.installed:
+    - name: netcat-traditional
 
 
 nginx:
@@ -48,7 +49,7 @@ nginx:
     - template: jinja
     - require:
       - pkg: nginx
-      - pkg: netcat-traditional
+      - pkg: nginx-deps-netcat-traditional
     - watch_in:
       - service: nginx
 
