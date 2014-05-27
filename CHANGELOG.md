@@ -1,4 +1,4 @@
-## Development
+## Version 1.1.0
 
 * Added UDP based statsd metric generation of start/restart
 * Removed explicit pidfile location definition - should remove nginx race condition wrt restarts
