@@ -1,3 +1,7 @@
+## Version 1.1.1
+
+* Allow the max client_max_body_size parameter to be overridden from a pillar value
+
 ## Version 1.1.0
 
 * Added UDP based statsd metric generation of start/restart
