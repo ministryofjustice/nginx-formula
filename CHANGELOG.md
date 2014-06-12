@@ -1,3 +1,9 @@
+## Version 2.0.0
+
+* removed elastic search specific template as it's a part of elasticsearch-formula
+* when hidden behind loadbalancer save real external ip in logs
+* when hidden behind loadbalancer pass through Host:Port (Host = $http_host)
+
 ## Version 1.1.1
 
 * Allow the max client_max_body_size parameter to be overridden from a pillar value
