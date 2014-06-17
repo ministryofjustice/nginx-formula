@@ -2,6 +2,7 @@
 
 include:
   - bootstrap.groups
+  - apparmor
 
 
 nginx-pkg-deps:
@@ -35,7 +36,13 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
-
+/etc/apparmor.d/usr.sbin.nginx:
+  file.managed:
+    - source: salt://nginx/files/nginx_apparmor_profile
+    - template: 'jinja'
+    - watch_in:
+      - command: reload-profiles
+      - service: nginx
 #
 # Place the startup script under nginx control
 # This allows us to generate UDP start events 

@@ -1,0 +1,32 @@
+#include <tunables/global>
+/usr/sbin/nginx {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/nis>
+
+  capability dac_override,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+
+
+
+  /etc/nginx/conf.d/ r,
+  /etc/nginx/conf.d/default.conf r,
+  /etc/nginx/conf.d/elasticsearch.conf r,
+  /etc/nginx/conf.d/grafana.conf r,
+  /etc/nginx/conf.d/graphite.conf r,
+  /etc/nginx/conf.d/kibana.conf r,
+  /etc/nginx/conf.d/pvb.conf r,
+  /etc/nginx/conf.d/sensu.conf r,
+  /etc/nginx/conf.d/sslloadbalancer.conf r,
+  /etc/nginx/mime.types r,
+  /etc/nginx/mime.types1 r,
+  /etc/nginx/nginx.conf r,
+  /etc/ssl/openssl.cnf r,
+  /run/nginx.pid rw,
+  /srv/pvb/application/releases/*/public/** r,
+  /usr/sbin/nginx mr,
+  /var/log/nginx/* w,
+
+}
