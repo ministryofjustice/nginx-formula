@@ -41,7 +41,7 @@ nginx:
     - source: salt://nginx/files/nginx_apparmor_profile
     - template: 'jinja'
     - watch_in:
-      - command: reload-profiles
+      - cmd: reload-profiles
       - service: nginx
 #
 # Place the startup script under nginx control
