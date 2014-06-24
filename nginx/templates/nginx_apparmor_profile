@@ -1,0 +1,23 @@
+#include <tunables/global>
+/usr/sbin/nginx  {{salt['pillar.get']('apparmor:profiles:nginx', '')}} {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/nis>
+
+  capability dac_override,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability chown,
+
+
+
+  /etc/nginx/** r,
+  /etc/ssl/openssl.cnf r,
+  /run/nginx.pid rw,
+  /usr/sbin/nginx mr,
+  /var/log/nginx/* w,
+  /var/lib/nginx/** rw,
+
+  #include <nginx_local>
+}
