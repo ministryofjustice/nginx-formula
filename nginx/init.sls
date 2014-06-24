@@ -36,13 +36,21 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+
+/etc/apparmor.d/nginx_local:
+  file.directory:
+    - mode: 755
+    - user: root
+    - group: root
+
 /etc/apparmor.d/usr.sbin.nginx:
   file.managed:
-    - source: salt://nginx/files/nginx_apparmor_profile
-    - template: 'jinja'
+    - source: salt://nginx/templates/nginx_apparmor_profile
+    - template: jinja
     - watch_in:
-      - cmd: reload-profiles
       - service: nginx
+
+
 #
 # Place the startup script under nginx control
 # This allows us to generate UDP start events 
