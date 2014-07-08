@@ -1,3 +1,8 @@
+## Version 2.0.1
+
+* Log X-Request-Id header in logs for tracking requests. This will not
+  currently be set anywhere.
+
 ## Version 2.0.0
 
 * removed elastic search specific template as it's a part of elasticsearch-formula
