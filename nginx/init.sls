@@ -2,6 +2,7 @@
 
 include:
   - bootstrap.groups
+  - apparmor
 
 
 nginx-pkg-deps:
@@ -34,6 +35,20 @@ nginx:
     - watch:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
+
+
+/etc/apparmor.d/nginx_local:
+  file.directory:
+    - mode: 755
+    - user: root
+    - group: root
+
+/etc/apparmor.d/usr.sbin.nginx:
+  file.managed:
+    - source: salt://nginx/templates/nginx_apparmor_profile
+    - template: jinja
+    - watch_in:
+      - service: nginx
 
 
 #

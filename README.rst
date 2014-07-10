@@ -135,3 +135,22 @@ Don't forget to manage the logs. I.e. by::
 
     {{ logship2('foo-access',  '/var/log/nginx/foo.access.json', 'nginx', ['nginx', 'foo', 'access'],  'rawjson') }}
     {{ logship2('foo-error',  '/var/log/nginx/foo.error.json', 'nginx', ['nginx', 'foo', 'error'],  'json') }}
+
+
+apparmor
+--------
+
+This formula includes some simple default apparmor profiles.
+
+You can add extra profiles for your site specific uses by putting files into
+``/etc/apparmor.d/nginx_local`` and then restarting the service - you will need
+to do this to add read access to web roots or SSL certificates.
+
+App armor is by default in complain mode which means it allows the action and
+logs. To make it deny actions that the profile doesn't cover set the following
+pillar::
+
+    apparmor:
+      profiles:
+        nginx:
+          enforce: ''
