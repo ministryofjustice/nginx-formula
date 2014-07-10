@@ -1,4 +1,4 @@
-## Version 2.x.0
+## Version 2.1.0
 
 * Create a basic apparmor profile for nginx. Local overrides can be placed in
   /etc/apparmor.d/nginx_local for site specific behaviour. The default mode is
