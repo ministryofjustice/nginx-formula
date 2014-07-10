@@ -1,3 +1,9 @@
+## Version 2.x.0
+
+* Create a basic apparmor profile for nginx. Local overrides can be placed in
+  /etc/apparmor.d/nginx_local for site specific behaviour. The default mode is
+  to just complain in the logs but allow the action.
+
 ## Version 2.0.1
 
 * Log X-Request-Id header in logs for tracking requests. This will not
