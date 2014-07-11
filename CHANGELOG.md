@@ -1,3 +1,7 @@
+## Version 2.1.x
+
+* pass through msec time so that kibana can better order events
+
 ## Version 2.1.0
 
 * Create a basic apparmor profile for nginx. Local overrides can be placed in
