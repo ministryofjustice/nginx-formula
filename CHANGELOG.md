@@ -1,6 +1,7 @@
-## Version 2.1.x
+## Version 2.2.0
 
 * pass through msec time so that kibana can better order events
+* add firewall to includes so that formula compiles
 
 ## Version 2.1.0
 
