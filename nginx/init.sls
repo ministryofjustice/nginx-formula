@@ -3,6 +3,7 @@
 include:
   - bootstrap.groups
   - apparmor
+  - firewall
 
 
 nginx-pkg-deps:
