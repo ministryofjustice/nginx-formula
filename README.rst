@@ -154,3 +154,26 @@ pillar::
       profiles:
         nginx:
           enforce: ''
+
+
+maintenance mode
+----------------
+Nginx templates also provide a simple and standardized mechanism to enable/disable maintenance mode for the system.
+It returns your 503 page with 503 http code plus it allows you to still access the site if you pass the password
+anywhere in user agent header.
+
+To swap your system into maintenance mode make sure you've overwritten the maintenance password in pillar.
+pillar::
+
+    mainenance:
+        password: your_password
+
+And than just update grain & run state.highstate
+grains::
+
+    maintenance: True
+
+TODO: change api so that we enable maintenance mode only on specific service (i.e. disable app but keep other
+services served on this server by nginx)
+
+
