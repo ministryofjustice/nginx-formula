@@ -32,6 +32,7 @@ optional variables:
  - index_doc - if defined becomes the index file (default index.html)
  - server_name - if defined than nginx listens on server_name - think vhost (default '_')
  - autoindex - to enable nginx autoindex (default False)
+ - is_external - service is user facing i.e. can enter maintenance mode
 
 
 vhost-fpm.conf
@@ -45,6 +46,7 @@ required:
 optional:
  - index_doc
  - server_name
+ - is_external
 
 
 vhost-proxy.conf
@@ -57,6 +59,7 @@ optional:
  - root_dir - defaults to /srv/{{appslug}}
  - index_doc
  - server_name
+ - is_external
 
 
 vhost-unicorn.conf/vhost-unixproxy.conf
@@ -69,6 +72,7 @@ required:
 optional:
  - index_doc
  - server_name
+ - is_external
 
 
 example
@@ -162,7 +166,7 @@ Nginx templates also provide a simple and standardized mechanism to enable/disab
 It returns your 503 page with 503 http code plus it allows you to still access the site if you pass the password
 anywhere in user agent header.
 
-To swap your system into maintenance mode make sure you've overwritten the maintenance password in pillar.
+To swap your system into maintenance mode make sure you've specified the maintenance password in pillar.
 pillar::
 
     mainenance:
@@ -173,7 +177,5 @@ grains::
 
     maintenance: True
 
-TODO: change api so that we enable maintenance mode only on specific service (i.e. disable app but keep other
-services served on this server by nginx)
-
+Maintenance mode is only enabled for external services (is_external context variable in template see above).
 
