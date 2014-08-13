@@ -19,12 +19,10 @@
 }, merge=salt['pillar.get']('nginx',{})) %}
 
 
-{% set maintenance = salt['grains.filter_by']({
-    'Debian': {
-        'enabled': False,
-        'password': 'changeme',
-    },
-    'default': 'Debian',
-}, merge=salt['pillar.get']('maintenance',{})) %}
+{% set maintenance = {
+    'enabled': salt['grains.get']('maintenance',False),
+    'password': salt['pillar.get']('maintenance:password','seriouslychangeme'),
+} %}
+
 
 {% set provider = salt['grains.get']('provider','ec2') %}
