@@ -1,3 +1,7 @@
+## Version 2.3.0
+
+* Enable maintenance/503 page from grains in addition to pillar value
+
 ## Version 2.2.0
 
 * pass through msec time so that kibana can better order events
