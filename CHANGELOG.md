@@ -1,3 +1,8 @@
+## Version 3.0.0
+
+* Removed code handling enforce_www, enforce_no_www. This should be handled
+  on the border, and the code in nginx-base* was insecure.
+
 ## Version 2.3.0
 
 * Enable maintenance/503 page from grains in addition to pillar value
