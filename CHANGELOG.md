@@ -1,3 +1,7 @@
+## Version 3.1.0
+
+* Log key SSL env details: ssl_version, ssl_session_id, et al.
+
 ## Version 3.0.0
 
 * Removed code handling enforce_www, enforce_no_www. This should be handled
