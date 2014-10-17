@@ -1,6 +1,7 @@
 ---
 driver:
   name: vagrant
+  vagrantfile_erb: "templates/Vagrantfile.erb"
   customize:
     memory: 1024
 
