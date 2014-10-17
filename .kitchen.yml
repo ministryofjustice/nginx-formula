@@ -1,0 +1,24 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 1024
+
+provisioner:
+  name: salt_solo
+  formula: nginx
+  vendor_path: "vendor/_root"
+  state_top:
+    base:
+      '*':
+        - firewall
+        - nginx
+
+platforms:
+  - name: ubuntu-12.04
+    driver:
+      box: "precise64"
+      box_url: "http://files.vagrantup.com/precise64.box"
+
+suites:
+  - name: default
