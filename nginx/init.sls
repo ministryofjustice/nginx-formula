@@ -99,6 +99,13 @@ nginx:
       - group
       - mode
 
+/etc/logrotate.d/nginx:
+  file.managed:
+    - source: salt://nginx/templates/logrotate.conf
+    - template: jinja
+    - mode: 644
+    - user: root
+    - group: root
 
 /etc/nginx/sites-available:
   file.absent
