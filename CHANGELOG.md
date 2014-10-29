@@ -1,3 +1,7 @@
+## Version 3.x.x
+
+* Pin version of nginx (for precise) in map.jinja.
+
 ## Version 3.1.0
 
 * Log key SSL env details: ssl_version, ssl_session_id, et al.
