@@ -19,7 +19,7 @@ GEM
       fog-softlayer
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.6.0)
+    fog-brightbox (0.6.1)
       fog-core (~> 1.22)
       fog-json
       inflecto
@@ -39,7 +39,7 @@ GEM
     fog-sakuracloud (0.1.1)
       fog-core
       fog-json
-    fog-softlayer (0.3.21)
+    fog-softlayer (0.3.23)
       fog-core
       fog-json
     fog-xml (0.1.0)
