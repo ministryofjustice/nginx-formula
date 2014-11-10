@@ -1,3 +1,10 @@
+## CURRENT
+
+* add nginx.readable_doc_dir_globs pillar to allow apparmor static asset serving.
+* use date based file extensions in logrotate
+* ensure we rotate json log files
+* change to daily log rotation
+
 ## Version 3.1.0
 
 * Log key SSL env details: ssl_version, ssl_session_id, et al.
