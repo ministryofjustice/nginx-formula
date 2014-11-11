@@ -37,6 +37,13 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+/var/log/nginx:
+  file.directory:
+    - mode: 2750
+    - user: nginx
+    - group: adm
+    - require:
+      - user: nginx
 
 /etc/apparmor.d/nginx_local:
   file.directory:
