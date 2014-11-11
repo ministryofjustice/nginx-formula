@@ -4,6 +4,7 @@
 * use date based file extensions in logrotate
 * ensure we rotate json log files
 * change to daily log rotation
+* fix logging perms, was causing rotate failures
 
 ## Version 3.1.0
 
