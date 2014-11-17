@@ -1,4 +1,4 @@
-## CURRENT
+## Version 3.2.0
 
 * add nginx.readable_doc_dir_globs pillar to allow apparmor static asset serving.
 * use date based file extensions in logrotate
