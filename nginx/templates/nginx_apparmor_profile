@@ -1,3 +1,4 @@
+{% from "nginx/map.jinja" import nginx with context %}
 #include <tunables/global>
 
 /usr/sbin/nginx  {{ salt['pillar.get']('apparmor:profiles:nginx:enforce', 'flags=(complain)') }} {
@@ -19,6 +20,9 @@
   /usr/sbin/nginx mr,
   /var/log/nginx/* w,
   /var/lib/nginx/** rw,
+{% for doc_dir in nginx.readable_doc_dir_globs %}
+  {{doc_dir}} r,
+{% endfor %}
 
   #include <nginx_local>
 }

@@ -37,6 +37,13 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+/var/log/nginx:
+  file.directory:
+    - mode: 2750
+    - user: nginx
+    - group: adm
+    - require:
+      - user: nginx
 
 /etc/apparmor.d/nginx_local:
   file.directory:
@@ -99,6 +106,13 @@ nginx:
       - group
       - mode
 
+/etc/logrotate.d/nginx:
+  file.managed:
+    - source: salt://nginx/templates/logrotate.conf
+    - template: jinja
+    - mode: 644
+    - user: root
+    - group: root
 
 /etc/nginx/sites-available:
   file.absent
