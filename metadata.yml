@@ -2,6 +2,7 @@ dependencies:
 - git@github.com:ministryofjustice/bootstrap-formula.git
 - git@github.com:ministryofjustice/firewall-formula.git
 - git@github.com:ministryofjustice/apparmor-formula.git
+- git@github.com:ministryofjustice/repos-formula.git
 
 entry:
  - nginx

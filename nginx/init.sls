@@ -4,18 +4,16 @@ include:
   - bootstrap.groups
   - apparmor
   - firewall
-
+  - repos
 
 nginx-pkg-deps:
   pkg.installed:
     - name: apache2-utils
 
-
 # This version of netcat seems more reliable
 nginx-deps-netcat-traditional:
   pkg.installed:
     - name: netcat-traditional
-
 
 nginx:
   user.present:
@@ -30,6 +28,7 @@ nginx:
       - group: webservice
   pkg.installed:
     - name: {{nginx.pkg}}
+    - version: {{nginx.version}}
   service.running:
     - enable: True
     - reload: True
@@ -57,7 +56,6 @@ nginx:
     - template: jinja
     - watch_in:
       - service: nginx
-
 
 #
 # Place the startup script under nginx control
@@ -87,14 +85,12 @@ nginx:
     - mode: 644
     - template: jinja
 
-
 /etc/nginx/conf.d/default.conf:
   file.managed:
     - source: salt://nginx/templates/default.conf
     - user: root
     - group: root
     - mode: 644
-
 
 /var/lib/nginx:
   file.directory:
@@ -116,7 +112,6 @@ nginx:
 
 /etc/nginx/sites-available:
   file.absent
-
 
 /etc/nginx/sites-enabled:
   file.absent
