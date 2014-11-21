@@ -17,7 +17,7 @@ describe "nginx setup" do
   state = {
     "ubuntu"  => {
       "pkg"   => "nginx-full",
-      "version" => "1.4.6-1ubuntu3",
+      "version" => "1.4.6-1ubuntu3.precise",
       "svc"   => "nginx",
       "user"  => "nginx",
       "group" => "nginx"
@@ -25,7 +25,7 @@ describe "nginx setup" do
   }
 
   describe package(state[platform]["pkg"]) do
-    it { should be_installed.with_version(state[platform]["version"] }
+    it { should be_installed.with_version(state[platform]["version"]) }
   end
 
   describe service(state[platform]["svc"]) do
