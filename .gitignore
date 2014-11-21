@@ -34,4 +34,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-*~
+.kitchen/
+.kitchen.local.yml
+.bundle
+vendor

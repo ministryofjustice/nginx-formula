@@ -1,0 +1,39 @@
+---
+provisioner:
+  name: salt_solo
+  formula: nginx
+  vendor_path: "vendor/_root" 
+  state_top:
+    base:
+      '*':
+        - nginx
+  omnibus_cachier: true
+
+platforms:
+  - name: vagrant-ubuntu-12.04
+    driver_plugin: vagrant
+    driver_config:
+      pre_create_command: "salt-shaker shake root_formula=ministryofjustice/nginx-formula"
+      vagrantfile_erb: "templates/Vagrantfile.erb"
+      cachier:
+        scope: "box"
+      customize:
+        memory: 1024
+      box: "hashicorp/precise64"
+      box_url: "https://vagrantcloud.com/hashicorp/boxes/precise64"
+
+  - name: aws-ubuntu-12.04
+    driver_plugin: ec2
+    driver_config:
+      aws_access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
+      aws_secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+      aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
+      ssh_key: <%= File.expand_path("~/.ssh/#{ENV['AWS_SSH_KEY_ID']}.pem") %>
+      image_id: ami-8e987ef9
+      username: ubuntu
+      security_group_ids: ["sg-e932d286"]
+      region: eu-west-1
+      availability_zone: eu-west-1a
+
+suites:
+  - name: default

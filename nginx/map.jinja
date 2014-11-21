@@ -1,6 +1,13 @@
 {% set nginx = salt['grains.filter_by']({
-    'Debian': {
+    'Ubuntu-12.04': {
+        'version': '1.4.6-1ubuntu3.precise',
         'pkg': 'nginx-full',
+    },
+    'Ubuntu-14.04': {
+        'version': '1.4.6-1ubuntu3.trusty',
+        'pkg': 'nginx-full',
+    },
+}, grain='osfinger', merge=salt['pillar.get']('nginx', merge=True, default={
         'port': '80',
         'throttling': {
             'enabled': False,
@@ -18,15 +25,11 @@
         'http_core_module_config': {
             'client_max_body_size': '50k',
         }
-    },
-    'default': 'Debian',
-}, merge=salt['pillar.get']('nginx',{})) %}
-
+})) %}
 
 {% set maintenance = {
     'enabled': salt['grains.get']('maintenance',False),
     'password': salt['pillar.get']('maintenance:password','seriouslychangeme'),
 } %}
-
 
 {% set provider = salt['grains.get']('provider','ec2') %}
