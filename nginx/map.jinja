@@ -1,6 +1,7 @@
 {% set nginx = salt['grains.filter_by']({
-    'Debian': {
+    'Ubuntu-14.04': {
         'pkg': 'nginx-full',
+        'version': '1.4.6-1ubuntu3.1',
         'port': '80',
         'throttling': {
             'enabled': False,
@@ -19,8 +20,49 @@
             'client_max_body_size': '50k',
         }
     },
-    'default': 'Debian',
-}, merge=salt['pillar.get']('nginx',{})) %}
+    'Ubuntu-12.04': {
+        'pkg': 'nginx-full',
+        'version': '1.4.6-1ubuntu3.precise',
+        'port': '80',
+        'throttling': {
+            'enabled': False,
+            'zones': {
+                'php': {
+                    'rate': '30r/m',
+                    'burst': 5,
+                }
+            }
+        },
+        'logrotate': {
+            'rotate_days': '365'
+        },
+        'readable_doc_dir_globs': [],
+        'http_core_module_config': {
+            'client_max_body_size': '50k',
+        }
+    },
+    'Unknown': {
+        'pkg': 'nginx-full',
+        'version': False,
+        'port': '80',
+        'throttling': {
+            'enabled': False,
+            'zones': {
+                'php': {
+                    'rate': '30r/m',
+                    'burst': 5,
+                }
+            }
+        },
+        'logrotate': {
+            'rotate_days': '365'
+        },
+        'readable_doc_dir_globs': [],
+        'http_core_module_config': {
+            'client_max_body_size': '50k',
+        }
+    }
+}, grain='osfinger', merge=salt['pillar.get']('nginx',{}), default='Unknown') %}
 
 
 {% set maintenance = {

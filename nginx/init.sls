@@ -30,6 +30,7 @@ nginx:
       - group: webservice
   pkg.installed:
     - name: {{nginx.pkg}}
+    - version: {{nginx.version}}
   service.running:
     - enable: True
     - reload: True
