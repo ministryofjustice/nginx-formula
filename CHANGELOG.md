@@ -1,3 +1,6 @@
+## Version 3.2.1
+* Pin the version of nginx. Can be overwritten in the pillar.
+
 ## Version 3.2.0
 
 * add nginx.readable_doc_dir_globs pillar to allow apparmor static asset serving.
