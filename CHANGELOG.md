@@ -1,3 +1,6 @@
+## Unreleased
+* Add optional skip_verify with a sensible default (False) set via nginx.pkg_skip_verify.
+
 ## Version 3.2.1
 * Pin the version of nginx. Can be overwritten in the pillar.
 
