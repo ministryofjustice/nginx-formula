@@ -1,6 +1,7 @@
 {% set nginx = salt['grains.filter_by']({
     'Ubuntu-14.04': {
         'pkg': 'nginx-full',
+        'pkg_skip_verify': False,
         'version': '1.4.6-1ubuntu3.2',
         'port': '80',
         'throttling': {
@@ -22,6 +23,7 @@
     },
     'Ubuntu-12.04': {
         'pkg': 'nginx-full',
+        'pkg_skip_verify': False,
         'version': '1.4.6-1ubuntu3.precise',
         'port': '80',
         'throttling': {
@@ -43,6 +45,7 @@
     },
     'Unknown': {
         'pkg': 'nginx-full',
+        'pkg_skip_verify': False,
         'version': False,
         'port': '80',
         'throttling': {
