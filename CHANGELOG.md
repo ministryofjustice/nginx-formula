@@ -1,4 +1,5 @@
 ## Version 3.2.1
+
 * Pin the version of nginx. Can be overwritten in the pillar.
 
 ## Version 3.2.0
