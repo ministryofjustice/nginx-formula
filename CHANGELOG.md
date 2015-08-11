@@ -1,3 +1,6 @@
+## Version 3.2.4
+* opgops-938 - Unpinned the version of nginx.
+
 ## Version 3.2.3
 * Add optional skip_verify with a sensible default (False) set via nginx.pkg_skip_verify.
 
