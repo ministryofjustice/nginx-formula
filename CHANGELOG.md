@@ -1,3 +1,6 @@
+## Version 3.2.5 (WIP)
+* Added parameter in core section of nginx.conf via pillar
+
 ## Version 3.2.4
 * opgops-938 - Unpinned the version of nginx.
 

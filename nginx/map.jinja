@@ -19,6 +19,9 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
         }
     },
     'Ubuntu-12.04': {
@@ -41,6 +44,9 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
         }
     },
     'Unknown': {
@@ -63,6 +69,9 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
         }
     }
 }, grain='osfinger', merge=salt['pillar.get']('nginx',{}), default='Unknown') %}
