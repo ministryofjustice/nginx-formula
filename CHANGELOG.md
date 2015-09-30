@@ -1,4 +1,4 @@
-## Version 3.2.7 (WIP)
+## Version 3.2.7
 * Added parameter in core section of nginx.conf via pillar
 
 ## Version 3.2.4
