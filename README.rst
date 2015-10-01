@@ -181,8 +181,29 @@ grains::
 
 Maintenance mode is only enabled for external services (is_external context variable in template see above).
 
-Defaults
-They can be found in `nginx/map.jinja`::
+tuning nginx
+------------
 
-'worker_rlimit_nofile': '4096'
-'client_max_body_size': '50k'
+- two of nginx parameters can be customised via the pillar
+- these values have defaults that can be found in `nginx/map.jinja`
+- the two parameters are::
+
+
+      'worker_rlimit_nofile': '4096'
+      'client_max_body_size': '50k'
+
+- how to use them in the pillar::
+
+
+      nginx:
+        version: 1.4.6-1ubuntu3.2
+        core_module_config:
+          worker_rlimit_nofile: <value>        <<<======
+
+
+      docker_envs:
+        yoursubdomain.yourdomain.dsd.io:
+          nginx_port: 80
+          client_max_body_size: 20m            <<<======
+          ssl:
+            redirect: True
