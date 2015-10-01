@@ -84,6 +84,8 @@ pillar::
       http_core_module_config:
         types_hash_max_size 2048
         types_hash_bucket_size 64
+      core_module_config:
+        worker_rlimit_nofile: <value>
 
     apps:
       foo:
@@ -179,3 +181,8 @@ grains::
 
 Maintenance mode is only enabled for external services (is_external context variable in template see above).
 
+Defaults
+They can be found in `nginx/map.jinja`::
+
+'worker_rlimit_nofile': '4096'
+'client_max_body_size': '50k'
