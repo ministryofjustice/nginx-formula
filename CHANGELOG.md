@@ -1,5 +1,8 @@
 ## Version 3.2.7
 * 3 nginx.conf parameters can be customised via pillar
+  * client_max_body_size
+  * worker_rlimit_nofile
+  * worker_connections
 
 ## Version 3.2.4
 * opgops-938 - Unpinned the version of nginx.
