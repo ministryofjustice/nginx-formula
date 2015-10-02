@@ -22,7 +22,11 @@
         },
         'core_module_config': {
             'worker_rlimit_nofile': '4096',
-        }
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     },
     'Ubuntu-12.04': {
         'pkg': 'nginx-full',
@@ -47,7 +51,11 @@
         },
         'core_module_config': {
             'worker_rlimit_nofile': '4096',
-        }
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     },
     'Unknown': {
         'pkg': 'nginx-full',
@@ -72,7 +80,11 @@
         },
         'core_module_config': {
             'worker_rlimit_nofile': '4096',
-        }
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     }
 }, grain='osfinger', merge=salt['pillar.get']('nginx',{}), default='Unknown') %}
 

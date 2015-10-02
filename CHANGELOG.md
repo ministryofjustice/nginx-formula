@@ -1,5 +1,5 @@
 ## Version 3.2.7
-* Added parameter in core section of nginx.conf via pillar
+* 3 nginx.conf parameters can be customised via pillar
 
 ## Version 3.2.4
 * opgops-938 - Unpinned the version of nginx.
