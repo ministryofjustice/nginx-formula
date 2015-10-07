@@ -1,5 +1,44 @@
+
 nginx-formula
 =============
+
+nginx tuning (this can still be used - 07/10/2015)
+------------
+
+- list of parameters that can be modified via the pillar
+- defaults in `nginx/map.jinja`::
+
+        'http_core_module_config': {
+            'client_max_body_size': '50k',
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
+
+- use in pillar (from the <envname>.sls file)::
+
+        nginx:
+          version: 1.4.6-1ubuntu3.2
+          core_module_config:
+            worker_rlimit_nofile: 10000
+            worker_processes: auto
+          main_events_context:
+            worker_connections: 5000
+
+      docker_envs:
+        yoursubdomain.yourdomain.dsd.io:
+          nginx_port: 80
+          client_max_body_size: 20m
+          ssl:
+            redirect: True
+
+
+The following information are almost certainly obsolete. Check instead the new moj-docker-deploy-formula: https://github.com/ministryofjustice/moj-docker-deploy-formula/tree/master/moj-docker-deploy/apps
+-------------
+
 A set of typical nginx configs that cover 90% use-cases.
 I.e. they expect that each app comes with::
 
@@ -181,35 +220,3 @@ grains::
 
 Maintenance mode is only enabled for external services (is_external context variable in template see above).
 
-nginx tuning
-------------
-
-- list of parameters that can be modified via the pillar
-- defaults in `nginx/map.jinja`::
-
-        'http_core_module_config': {
-            'client_max_body_size': '50k',
-        },
-        'core_module_config': {
-            'worker_rlimit_nofile': '4096',
-        },
-        'main_events_context': {
-          'worker_connections': '1024',
-        },
-
-- use in pillar (from the <envname>.sls file)::
-
-        nginx:
-          version: 1.4.6-1ubuntu3.2
-          core_module_config:
-            worker_rlimit_nofile: 10000
-            worker_processes: auto
-          main_events_context:
-            worker_connections: 5000
-
-      docker_envs:
-        yoursubdomain.yourdomain.dsd.io:
-          nginx_port: 80
-          client_max_body_size: 20m
-          ssl:
-            redirect: True
