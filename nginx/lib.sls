@@ -28,15 +28,19 @@ htpasswd -bd /etc/nginx/htpasswd-{{appslug}} {{username}} {{password}}:
 {% endmacro %}
 
 {#
-  Log config can be referenced in several places, so let's make it DRY with a macro.
-
-  # This macro does this blah blah blah
+  # This macro generates log format & log file config, allowing customisation of both
   #
   # Args:
   #   config(dictionary): a dictionary of additional/replacement log formats and locations, in this form:
   #     { 
-  #         logs:
-
+  #         formats:
+  #           format_name: 'format definition (e.g. a block of json)'
+  #         access_logs:
+  #           - format: (format name)
+  #             path: (absolute path to the log file)
+  #           .... repeat the above two lines for as many files as needed
+  #         error_logs:
+  #           - (as for access_logs)
   #     } 
   #}
 {% macro nginx_custom_log_formats_and_files(log_config) %}
