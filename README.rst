@@ -27,6 +27,19 @@ nginx tuning (this can still be used - 07/10/2015)
             worker_processes: auto
           main_events_context:
             worker_connections: 5000
+          logs:
+            formats:
+              # NOTE: logstash_json format is always present,
+              # you only need to define additional formats
+              my_custom_format: 'my custom format definition'
+            access_logs:
+              - path: '/var/log/nginx/logstash_access.log'
+                format: logstash_json
+              - path: '/var/log/nginx/my_custom_access.log'
+                format: my_custom_format
+            error_logs:
+              - path: '/var/log/nginx/error.log'
+                format: error
 
       docker_envs:
         yoursubdomain.yourdomain.dsd.io:
@@ -34,7 +47,19 @@ nginx tuning (this can still be used - 07/10/2015)
           client_max_body_size: 20m
           ssl:
             redirect: True
-
+          logs:
+            formats:
+              # NOTE: logstash_json format is always present,
+              # you only need to define additional formats
+              my_custom_format: 'my custom format definition'
+            access_logs:
+              - path: '/var/log/nginx/logstash_access.log'
+                format: logstash_json
+              - path: '/var/log/nginx/my_custom_access.log'
+                format: my_custom_format
+            error_logs:
+              - path: '/var/log/nginx/error.log'
+                format: error
 
 The following information are almost certainly obsolete. Check instead the new moj-docker-deploy-formula: https://github.com/ministryofjustice/moj-docker-deploy-formula/tree/master/moj-docker-deploy/apps
 -------------
