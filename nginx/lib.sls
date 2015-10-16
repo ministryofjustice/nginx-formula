@@ -28,15 +28,20 @@ htpasswd -bd /etc/nginx/htpasswd-{{appslug}} {{username}} {{password}}:
 {% endmacro %}
 
 {#
-  Log config can be referenced in several places, so let's make it DRY with a macro
-#}
-{% macro nginx_custom_log_formats_and_files(config) %}
-  {% if config.get('logs', False) %}
-    {% set log_config = config.get('logs') %}
-    {% for format_name, format_json in log_config.get('formats', {}) %}log_format {{ format_name }} '{{ format_json }}';{% endfor %}
+  Log config can be referenced in several places, so let's make it DRY with a macro.
 
-    {% for log_params in log_config.get('access_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
-    {% for log_params in log_config.get('error_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
-  {% endif %}
+  # This macro does this blah blah blah
+  #
+  # Args:
+  #   config(dictionary): a dictionary of additional/replacement log formats and locations, in this form:
+  #     { 
+  #         logs:
 
+  #     } 
+  #}
+{% macro nginx_custom_log_formats_and_files(log_config) %}
+  {% for format_name, format_json in log_config.get('formats', {}) %}log_format {{ format_name }} '{{ format_json }}';{% endfor %}
+
+  {% for log_params in log_config.get('access_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
+  {% for log_params in log_config.get('error_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
 {% endmacro %}
