@@ -1,3 +1,8 @@
+## UNRELEASED
+
+* Missing import in vhost-base
+* Fix syntax for macro calls
+    
 ## Version 3.2.7
 * 3 nginx.conf parameters can be customised via pillar
   * client_max_body_size
