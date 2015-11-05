@@ -44,8 +44,11 @@ htpasswd -bd /etc/nginx/htpasswd-{{appslug}} {{username}} {{password}}:
   #     } 
   #}
 {% macro nginx_custom_log_formats_and_files(log_config) %}
-  {% for format_name, format_json in log_config.get('formats', {}) %}log_format {{ format_name }} '{{ format_json }}';{% endfor %}
+  {% for format_name, format_json in log_config.get('formats', {}).iteritems() %}log_format {{ format_name }} '{{ format_json }}';
+  {% endfor %}
 
-  {% for log_params in log_config.get('access_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
-  {% for log_params in log_config.get('error_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }}{% endfor %}
+  {% for log_params in log_config.get('access_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }};
+  {% endfor %}
+  {% for log_params in log_config.get('error_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }};
+  {% endfor %}
 {% endmacro %}
