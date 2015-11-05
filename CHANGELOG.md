@@ -1,3 +1,8 @@
+## unreleased
+
+Fixes:
+* "too many items to unpack" error when a custom log format is defined in nginx > logs > formats
+
 ## v3.3.0
 
 Features:
