@@ -1,4 +1,4 @@
-## unreleased
+## v3.3.3
 
 Fixes:
 * "unknown log format 'error'" when overriding default log formats
