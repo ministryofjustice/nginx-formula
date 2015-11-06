@@ -1,6 +1,11 @@
 ## unreleased
 
 Fixes:
+* "unknown log format 'error'" when overriding default log formats
+
+## v3.3.2
+
+Fixes:
 * "too many items to unpack" error when a custom log format is defined in nginx > logs > formats
 
 ## v3.3.0

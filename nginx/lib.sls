@@ -49,6 +49,6 @@ htpasswd -bd /etc/nginx/htpasswd-{{appslug}} {{username}} {{password}}:
 
   {% for log_params in log_config.get('access_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }};
   {% endfor %}
-  {% for log_params in log_config.get('error_logs', []) %}access_log {{ log_params.path }} {{ log_params.format }};
+  {% for log_params in log_config.get('error_logs', []) %}error_log {{ log_params.path }} {{ log_params.format }};
   {% endfor %}
 {% endmacro %}
