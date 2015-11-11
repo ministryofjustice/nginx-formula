@@ -1,3 +1,43 @@
+## v3.3.3
+
+Fixes:
+* "unknown log format 'error'" when overriding default log formats
+
+## v3.3.2
+
+Fixes:
+* "too many items to unpack" error when a custom log format is defined in nginx > logs > formats
+
+## v3.3.0
+
+Features:
+* Added ability to provide a custom log_format
+* multiple log file/format support in nginx.conf & vhost-base.conf
+
+Fixes:
+* Missing import in vhost-base
+* Fix nginx log macro calls
+* Updated the README to reflect some recent findings
+* added explanatory comment in lib.sls
+* removed the if statement, which is now redundant as we pass in the contents of the log key rather than its parent
+* restructured after consultation with @niallcreech to be compatible with per-host setttings in moj-docker-deploy
+* reworked to allow default logstash_json to be kept if wanted
+    
+## Version 3.2.7
+* 3 nginx.conf parameters can be customised via pillar
+  * client_max_body_size
+  * worker_rlimit_nofile
+  * worker_connections
+
+## Version 3.2.4
+* opgops-938 - Unpinned the version of nginx.
+
+## Version 3.2.3
+* Add optional skip_verify with a sensible default (False) set via nginx.pkg_skip_verify.
+
+## Version 3.2.2
+* New version of nginx: 1.4.6-1ubuntu3.2
+
 ## Version 3.2.1
 
 * Pin the version of nginx. Can be overwritten in the pillar.

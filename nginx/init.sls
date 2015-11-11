@@ -31,6 +31,7 @@ nginx:
   pkg.installed:
     - name: {{nginx.pkg}}
     - version: {{nginx.version}}
+    - skip_verify: {{ nginx.pkg_skip_verify }}
   service.running:
     - enable: True
     - reload: True

@@ -1,7 +1,8 @@
 {% set nginx = salt['grains.filter_by']({
     'Ubuntu-14.04': {
         'pkg': 'nginx-full',
-        'version': '1.4.6-1ubuntu3.3',
+        'pkg_skip_verify': False,
+        'version': '',
         'port': '80',
         'throttling': {
             'enabled': False,
@@ -18,11 +19,19 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
-        }
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     },
     'Ubuntu-12.04': {
         'pkg': 'nginx-full',
-        'version': '1.4.6-1ubuntu3.precise',
+        'pkg_skip_verify': False,
+        'version': '',
         'port': '80',
         'throttling': {
             'enabled': False,
@@ -39,11 +48,19 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
-        }
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     },
     'Unknown': {
         'pkg': 'nginx-full',
-        'version': False,
+        'pkg_skip_verify': False,
+        'version': '',
         'port': '80',
         'throttling': {
             'enabled': False,
@@ -60,7 +77,14 @@
         'readable_doc_dir_globs': [],
         'http_core_module_config': {
             'client_max_body_size': '50k',
-        }
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
+            'worker_processes':  '1',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
     }
 }, grain='osfinger', merge=salt['pillar.get']('nginx',{}), default='Unknown') %}
 

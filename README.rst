@@ -1,5 +1,69 @@
+
 nginx-formula
 =============
+
+nginx tuning (this can still be used - 07/10/2015)
+------------
+
+- list of parameters that can be modified via the pillar
+- defaults in `nginx/map.jinja`::
+
+        'http_core_module_config': {
+            'client_max_body_size': '50k',
+        },
+        'core_module_config': {
+            'worker_rlimit_nofile': '4096',
+        },
+        'main_events_context': {
+          'worker_connections': '1024',
+        },
+
+- use in pillar (from the <envname>.sls file)::
+
+        nginx:
+          version: 1.4.6-1ubuntu3.2
+          core_module_config:
+            worker_rlimit_nofile: 10000
+            worker_processes: auto
+          main_events_context:
+            worker_connections: 5000
+          logs:
+            formats:
+              # NOTE: logstash_json format is always present,
+              # you only need to define additional formats
+              my_custom_format: 'my custom format definition'
+            access_logs:
+              - path: '/var/log/nginx/logstash_access.log'
+                format: logstash_json
+              - path: '/var/log/nginx/my_custom_access.log'
+                format: my_custom_format
+            error_logs:
+              - path: '/var/log/nginx/error.log'
+                format: error
+
+      docker_envs:
+        yoursubdomain.yourdomain.dsd.io:
+          nginx_port: 80
+          client_max_body_size: 20m
+          ssl:
+            redirect: True
+          logs:
+            formats:
+              # NOTE: logstash_json format is always present,
+              # you only need to define additional formats
+              my_custom_format: 'my custom format definition'
+            access_logs:
+              - path: '/var/log/nginx/logstash_access.log'
+                format: logstash_json
+              - path: '/var/log/nginx/my_custom_access.log'
+                format: my_custom_format
+            error_logs:
+              - path: '/var/log/nginx/error.log'
+                format: error
+
+The following information are almost certainly obsolete. Check instead the new moj-docker-deploy-formula: https://github.com/ministryofjustice/moj-docker-deploy-formula/tree/master/moj-docker-deploy/apps
+-------------
+
 A set of typical nginx configs that cover 90% use-cases.
 I.e. they expect that each app comes with::
 
@@ -84,6 +148,8 @@ pillar::
       http_core_module_config:
         types_hash_max_size 2048
         types_hash_bucket_size 64
+      core_module_config:
+        worker_rlimit_nofile: <value>
 
     apps:
       foo:
