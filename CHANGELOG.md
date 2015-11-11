@@ -39,6 +39,7 @@ Fixes:
 * New version of nginx: 1.4.6-1ubuntu3.2
 
 ## Version 3.2.1
+
 * Pin the version of nginx. Can be overwritten in the pillar.
 
 ## Version 3.2.0

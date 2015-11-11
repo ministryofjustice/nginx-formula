@@ -10,6 +10,7 @@ requires appslug defined in context
         'port': nginx.port,
         'auth_basic_user_file': '/etc/nginx/htpasswd-'+appslug,
         'auth_basic': False,
+        'auth_ext': False,
         'auth_basic_users': {},
         'redirects': [],
         'http_access_rules': [],
