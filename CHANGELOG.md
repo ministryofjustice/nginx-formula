@@ -1,3 +1,8 @@
+## v3.3.4
+
+Fixes:
+* double-quoted json in custom log formats
+
 ## v3.3.3
 
 Fixes:
