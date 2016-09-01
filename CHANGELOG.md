@@ -1,3 +1,6 @@
+## v3.4.0
+* Check the nginx config explicitly
+
 ## v3.3.4
 
 Fixes:
