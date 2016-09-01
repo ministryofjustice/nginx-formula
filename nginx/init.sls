@@ -39,6 +39,15 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
+nginx-config-test:
+  cmd.run:
+    - name: 'nginx -t'
+    - watch:
+{% if 0 == salt['cmd.retcode']('test -d /etc/nginx/sites-available') %}
+      - file: /etc/nginx/sites-available/*
+{% endif %}
+      - file: /etc/nginx/conf.d/*.conf
+
 /var/log/nginx:
   file.directory:
     - mode: 2750
