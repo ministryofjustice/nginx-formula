@@ -3,7 +3,6 @@
 include:
   - bootstrap.groups
   - apparmor
-  - firewall
 
 
 nginx-pkg-deps:
@@ -86,9 +85,6 @@ nginx-config-test:
       - pkg: nginx-deps-netcat-traditional
     - watch_in:
       - service: nginx
-
-{% from 'firewall/lib.sls' import firewall_enable with context %}
-{{ firewall_enable('nginx', nginx.port , 'tcp') }}
 
 /etc/nginx/nginx.conf:
   file.managed:
