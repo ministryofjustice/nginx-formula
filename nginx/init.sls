@@ -47,6 +47,8 @@ nginx-config-test:
       - file: /etc/nginx/sites-available/*
 {% endif %}
       - file: /etc/nginx/conf.d/*.conf
+    - require_in:
+      - file: /etc/nginx/sites-available
 
 /var/log/nginx:
   file.directory:
