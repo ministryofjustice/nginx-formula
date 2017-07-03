@@ -1,3 +1,6 @@
+## UNRELEASED
+* Make the change of init script optional, as it breaks in later versions
+
 ## v3.4.0
 * Check the nginx config explicitly
 
