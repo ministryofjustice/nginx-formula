@@ -4,6 +4,7 @@ include:
   - bootstrap.groups
   - apparmor
   - firewall
+  - .ppa
 
 
 nginx-pkg-deps:
@@ -32,6 +33,9 @@ nginx:
     - name: {{nginx.pkg}}
     - version: {{nginx.version}}
     - skip_verify: {{ nginx.pkg_skip_verify }}
+{%- if nginx.install_from_ppa %}
+    - fromrepo: deb http://ppa.launchpad.net/nginx/stable/ubuntu {{ oscodename }} main
+{%- endif %}
   service.running:
     - enable: True
     - reload: True
