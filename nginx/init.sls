@@ -67,9 +67,11 @@ nginx-config-test:
       - service: nginx
 
 
+
+{% if nginx.get('override_init', False) %}
 #
 # Place the startup script under nginx control
-# This allows us to generate UDP start events 
+# This allows us to generate UDP start events
 #
 /etc/init.d/nginx:
   file.managed:
@@ -83,6 +85,7 @@ nginx-config-test:
       - pkg: nginx-deps-netcat-traditional
     - watch_in:
       - service: nginx
+{% endif %}
 
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('nginx', nginx.port , 'tcp') }}
