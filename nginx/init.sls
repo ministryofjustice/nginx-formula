@@ -43,9 +43,6 @@ nginx-config-test:
   cmd.run:
     - name: 'nginx -t'
     - watch:
-{% if 0 == salt['cmd.retcode']('test -d /etc/nginx/sites-available') %}
-      - file: /etc/nginx/sites-available/*
-{% endif %}
       - file: /etc/nginx/conf.d/*.conf
 
 /var/log/nginx:
@@ -97,6 +94,8 @@ nginx-config-test:
     - group: root
     - mode: 644
     - template: jinja
+    - require_in:
+      - cmd: nginx-config-test
 
 
 /etc/nginx/conf.d/default.conf:
@@ -105,6 +104,8 @@ nginx-config-test:
     - user: root
     - group: root
     - mode: 644
+    - require_in:
+      - cmd: nginx-config-test
 
 
 /var/lib/nginx:
@@ -125,9 +126,11 @@ nginx-config-test:
     - user: root
     - group: root
 
-/etc/nginx/sites-available:
-  file.absent
-
+remove-sites-available:
+  file.absent:
+    - name: /etc/nginx/sites-available
+    - require_in:
+      - cmd: nginx-config-test
 
 /etc/nginx/sites-enabled:
   file.absent

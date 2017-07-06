@@ -1,3 +1,6 @@
+## UNRELEASED
+* Remove watch from sites-available
+
 ## v3.4.0
 * Check the nginx config explicitly
 
