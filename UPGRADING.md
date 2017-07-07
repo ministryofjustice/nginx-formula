@@ -1,3 +1,9 @@
+Version 3.5.0
+----
+
+Default behaviour change: We no longer send out UDP events during nginx
+restarts
+
 Version 3.0.0
 ----
 

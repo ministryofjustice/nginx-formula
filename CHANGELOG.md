@@ -1,4 +1,4 @@
-## UNRELEASED
+## v3.5.0
 * Remove watch from sites-available
 * Make the change of init script optional, as it breaks in later versions
 
@@ -34,7 +34,7 @@ Fixes:
 * removed the if statement, which is now redundant as we pass in the contents of the log key rather than its parent
 * restructured after consultation with @niallcreech to be compatible with per-host setttings in moj-docker-deploy
 * reworked to allow default logstash_json to be kept if wanted
-    
+
 ## Version 3.2.7
 * 3 nginx.conf parameters can be customised via pillar
   * client_max_body_size
