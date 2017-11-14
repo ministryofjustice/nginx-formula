@@ -39,11 +39,11 @@ nginx:
       - file: /etc/nginx/nginx.conf
       - file: /etc/nginx/conf.d/*.conf
 
- nginx-config-test:
-   cmd.run:
-    - name: 'nginx -t'
-    - watch:
-      - file: /etc/nginx/conf.d/*.conf
+nginx-config-test:
+  cmd.run:
+   - name: 'nginx -t'
+   - watch:
+     - file: /etc/nginx/conf.d/*.conf
 
 /var/log/nginx:
   file.directory:
